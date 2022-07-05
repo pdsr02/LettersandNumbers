@@ -5,6 +5,8 @@ import android.util.Log;
 import java.lang.ref.WeakReference;
 
 import es.ulpgc.eite.cleancode.lettersnumbers.app.AppMediator;
+import es.ulpgc.eite.cleancode.lettersnumbers.app.LettersToNumbersState;
+import es.ulpgc.eite.cleancode.lettersnumbers.app.NumbersToLettersState;
 import es.ulpgc.eite.cleancode.lettersnumbers.data.LetterData;
 
 public class LetterListPresenter implements LetterListContract.Presenter {
@@ -32,14 +34,18 @@ public class LetterListPresenter implements LetterListContract.Presenter {
   @Override
   public void onRestart() {
     Log.e(TAG, "onRestart()");
-
     // TODO: add code if is necessary
+    view.get().onDataUpdated(state);
   }
 
   @Override
   public void onResume() {
     Log.e(TAG, "onResume()");
     // TODO: add code if is necessary
+    NumbersToLettersState savedState = mediator.getNextLetterListScreenState();
+    if(savedState!=null) {
+      model.onDataFromNextScreen(savedState.data, savedState.number);
+    }
 
   }
 
@@ -77,7 +83,11 @@ public class LetterListPresenter implements LetterListContract.Presenter {
   public void onClickLetterListCell(LetterData data) {
     Log.e(TAG, "onClickLetterListCell()");
     // TODO: add code if is necessary
-
+    state.number= model.getStoredNumber();
+   LettersToNumbersState newState = new LettersToNumbersState(data,state.number);
+    Log.e(TAG, "number= "+state.number);
+    mediator.setNextLetterListScreenState(newState);
+    view.get().navigateToNextScreen();
   }
 
 

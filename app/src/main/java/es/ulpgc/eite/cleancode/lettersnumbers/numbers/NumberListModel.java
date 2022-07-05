@@ -1,5 +1,7 @@
 package es.ulpgc.eite.cleancode.lettersnumbers.numbers;
 
+import android.util.Log;
+
 import es.ulpgc.eite.cleancode.lettersnumbers.data.LetterData;
 import es.ulpgc.eite.cleancode.lettersnumbers.data.NumberData;
 
@@ -41,9 +43,10 @@ public class NumberListModel implements NumberListContract.Model {
 
   @Override
   public void onDataFromPreviousScreen(LetterData data, Integer number) {
-    // Log.e(TAG, "onDataFromPreviousScreen()");
-
+    Log.e(TAG, "onDataFromPreviousScreen()");
     // TODO: add code if is necessary
+    this.data=data;
+    this.number=number;
   }
 
 }

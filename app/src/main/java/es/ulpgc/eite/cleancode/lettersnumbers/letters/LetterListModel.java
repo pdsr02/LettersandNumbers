@@ -61,8 +61,13 @@ public class LetterListModel implements LetterListContract.Model {
   @Override
   public void onDataFromNextScreen(LetterData data, Integer number) {
     // Log.e(TAG, "onDataFromNextScreen()");
-
     // TODO: add code if is necessary
+    for(int i=0; i<datasource.size();i++){
+      if(datasource.get(i).letter.equals(data.letter)){
+        datasource.get(i).numbers=data.numbers;
+      }
+    }
+    this.number=number;
   }
 
 }
