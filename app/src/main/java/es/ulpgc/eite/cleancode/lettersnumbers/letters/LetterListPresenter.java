@@ -25,7 +25,6 @@ public class LetterListPresenter implements LetterListContract.Presenter {
   @Override
   public void onStart() {
     Log.e(TAG, "onStart()");
-
     // TODO: add code if is necessary
 
   }
@@ -40,7 +39,6 @@ public class LetterListPresenter implements LetterListContract.Presenter {
   @Override
   public void onResume() {
     Log.e(TAG, "onResume()");
-
     // TODO: add code if is necessary
 
   }
@@ -69,15 +67,17 @@ public class LetterListPresenter implements LetterListContract.Presenter {
   @Override
   public void onClickLetterListButton() {
     Log.e(TAG, "onClickLetterListButton()");
-
     // TODO: add code if is necessary
+    model.onAddLetter();
+    state.datasource= model.getStoredDatasource();
+    view.get().onDataUpdated(state);
   }
 
   @Override
   public void onClickLetterListCell(LetterData data) {
     Log.e(TAG, "onClickLetterListCell()");
-
     // TODO: add code if is necessary
+
   }
 
 
